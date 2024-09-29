@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I would like explore some data on the middle east and how U.S. intervention has affected it's stability.
+I would like explore some data on the Middle East and North Africa (MENA) data that would categorize the level of democracy in MENA countries and along with this, I would examine the scale of U.S. intervention in each country (could possibly be measured through U.S. financial aid to each country). Overall, I would use this to come to a conclusion on whether the majority of U.S. intervention in MENA countries is beneficial or disadvantageous since MENA intervention is often very controversial.
