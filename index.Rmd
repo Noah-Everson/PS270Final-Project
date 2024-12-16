@@ -16,3 +16,52 @@ I would like explore some data on the Middle East and North Africa (MENA) data t
 
 Milestone Two:
 	I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. Overall, I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I would like to use countries outside of the MENA region as a control to see whether U.S. aid itself has the same effect regardless of country or if the MENA region has a unique result from U.S. aid. If countries in the MENA region had higher levels of democracy after receiving aid, but then lower levels once the aid was removed or decreased significantly, then my hypothesis would seem accurate.  
+
+Milestone Three:
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+freedom_scores <- read.csv("data/Aggregate_Category_and_Subcategory_Scores_FIW_2003-2024.csv" )
+foreign_aid <- read.csv("data/us_foreign_budget_complete.csv")
+head(foreign_aid)
+head(freedom_scores)
+```
+
+
+
+
+```{r}
+mena_aid <- foreign_aid |>
+  filter(Country.Name %in% c("Afghanistan" ,"Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" )) |>
+  mutate(Edition = Fiscal.Year) |>
+  group_by(Edition, Country.Name) |>
+  summarize(total_aid = sum(current_amount) / 1000000)
+mena_aid
+mena_score <- freedom_scores |>
+  filter(Country.Territory %in% c("Afghanistan" , "Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel")) |>
+  group_by(Edition , Country.Territory)
+mena_score
+
+
+```
+
+```{r}
+library(ggplot2)
+mena_aid |> 
+  ggplot(aes(x = Edition , y = total_aid , color = Country.Name , group = Country.Name)) +
+  geom_point() + geom_line() + facet_wrap(~ Country.Name)
+```
+
+```{r}
+mena_score |> 
+  ggplot(aes(x = Edition , y = PR.Rating + CL.Rating , color = Country.Territory , group = Country.Territory)) +
+  geom_point() + geom_line() + theme_minimal() + facet_wrap(~ Country.Territory)
+```
+
+
+
+
+
+
+
