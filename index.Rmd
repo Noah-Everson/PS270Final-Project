@@ -48,15 +48,17 @@ mena_score
 
 ```{r}
 library(ggplot2)
-mena_aid |> 
+aid_graph <- mena_aid |> 
   ggplot(aes(x = Edition , y = total_aid , color = Country.Name , group = Country.Name)) +
   geom_point() + geom_line() + facet_wrap(~ Country.Name)
+aid_graph
 ```
 
 ```{r}
-mena_score |> 
+score_graph <- mena_score |> 
   ggplot(aes(x = Edition , y = PR.Rating + CL.Rating , color = Country.Territory , group = Country.Territory)) +
   geom_point() + geom_line() + theme_minimal() + facet_wrap(~ Country.Territory)
+score_graph
 ```
 
 
