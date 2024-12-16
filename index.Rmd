@@ -9,7 +9,7 @@ output:
 
 
 
-
+Introduction:
 	In my final project, I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I am going to use a smaller sample of MENA countries to more easily represent them in visual data, but I will include a sample size that has countries with significant U.S. aid and countries that receive litte U.S. aid. Overall, this study should provide important information on whether the significant amount of money that the U.S. provides to MENA is beneficial for democratization efforts or whether it is ineffective.
 
 
@@ -22,7 +22,7 @@ foreign_aid <- read.csv("data/us_foreign_budget_complete.csv")
 ```
 
 
-##Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.
+## Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.
 
 ```{r}
 mena_aid <- foreign_aid |>
@@ -80,7 +80,7 @@ summary(fit_ovr)
 
 ## Initially, it seems that there is no correlation between the total aid received by a MENA country and their levels of democracy, so I decided to look at more specific variables in the foreign aid section since the overall total did not seem to have a correlation with the democracy levels in each country. The two variables I thought might have an impact on democratization efforts were education and military. Educational aid to a population might lead to democratization assuming the education they receive is not full of propaganda and military aid could help quell authoritarian forces in MENA countries.
 
-##I began by looking at all the disbursements that went towards different forms of education in each country. 
+## I began by looking at all the disbursements that went towards different forms of education in each country. 
 
 ```{r}
 mena_education <- foreign_aid |>
@@ -118,7 +118,10 @@ summary(fit_mil)
 ## Here again, there seems to be no correlation.
 
 Results:
-  All three regressions suggest that U.S. aid to any sort of field is ineffective in MENA countries. Each regression had the same intercept of about 10.3 meaning no aid in each category yielded the same result. Additionally, each coefficient for every form of aid was statistically insignificant with each one being less than one percentage point. Although there are other categories of disbursements that could be analyzed, these two cateogries seem to be the most likely to have an effect on levels of democracy. Because of this, their statistically insignifcant coefficients imply that U.S. monetary aid in any facet does not promote democracy.
+  All three regressions suggest that U.S. aid to any sort of field is ineffective in MENA countries. Each regression had the same intercept of about 10.3 meaning no aid in each category yielded the same result. Additionally, each coefficient for every form of aid was statistically insignificant with each one being less than one percentage point. Although there are other categories of disbursements that could be analyzed, these two cateogries seem to be the most likely to have an effect on levels of democracy. Because of this, their statistically insignificant coefficients imply that U.S. monetary aid in any facet does not promote democracy.
+
+Conclusion:
+  Ultimately, my results do not support my hypothesis, and it seems that U.S. monetary aid to MENA countries has little to no effect. Moreover, it seems that most MENA countries are opposed to any sort of democratization regardless of how much U.S. monetary aid they receive. The biggest limitation of this study is that it does not evaluate how the history of each country comes into play when understanding why U.S. aid might or might not be effective. The MENA region is historically authoritarian and has struggled to adapt western democracies in any capacity. Future studies might benefit by analyzing how U.S. aid has affected MENA countries through case studies of individual countries. This may help explain why a country like Afghanistan can receive significant U.S. aid with little results while Tunisia experienced signficant success without much aid.
   
 
 

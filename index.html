@@ -1543,7 +1543,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<pre><code>In my final project, I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. Overall, I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I am going to use a smaller sample of MENA countries to more easily represent them in visual data, but I will include a sample size that has countries with significant U.S. aid and countries that receive litte U.S. aid. Overall, this study should provide important information on whether the significant amount of money that the U.S. provides to MENA is beneficial for democratization efforts or whether it is ineffective.</code></pre>
+<p>Introduction:
+In my final project, I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I am going to use a smaller sample of MENA countries to more easily represent them in visual data, but I will include a sample size that has countries with significant U.S. aid and countries that receive litte U.S. aid. Overall, this study should provide important information on whether the significant amount of money that the U.S. provides to MENA is beneficial for democratization efforts or whether it is ineffective.</p>
 <h2 id="here-the-data-from-the-foreign-assistance-u.s.-government-website-and-the-freedom-house-website-are-loaded-into-r.-the-freedom-house-dataset-i-used-contained-data-on-every-country-in-the-world-from-2006-to-2024.-based-on-this-my-graphs-show-the-full-extent-of-these-years-to-give-the-largest-picture-of-whats-happening-in-the-mena-region.-freedom-house-uses-two-main-figures-to-score-how-democratic-a-country-is-civil-liberties-cl-and-personal-rights-pr.-the-dataset-ranks-each-of-these-from-1-to-7-with-1-signifying-the-most-cls-or-prs-and-7-the-least-cls-or-prs.-later-i-will-combine-these-scores-to-give-an-overall-representation-of-how-democratic-a-country-is.-as-for-the">Here the data from the foreign assistance U.S. Government website and the Freedom House website are loaded into R. The Freedom House dataset I used contained data on every country in the world from 2006 to 2024. Based on this, my graphs show the full extent of these years to give the largest picture of what’s happening in the MENA region. Freedom House uses two main figures to score how democratic a country is: civil liberties (CL) and personal rights (PR). The dataset ranks each of these from 1 to 7 with 1 signifying the most CLs or PRs and 7 the least CLs or PRs. Later, I will combine these scores to give an overall representation of how democratic a country is. As for the</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1553,7 +1554,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span><span class='va'>foreign_aid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/us_foreign_budget_complete.csv"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>##Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.</p>
+<h2 id="next-the-data-is-filtered-to-include-a-representative-sample-of-mena-countries.-the-sample-includes-countries-that-have-received-significant-u.s.-aid-and-countries-that-have-received-little-to-no-aid.-then-the-sample-is-grouped-by-year-and-country-so-each-data-set-can-be-compared-by-the-same-variables.-for-the-monetary-aid-dataset-i-totaled-all-of-the-disbursements-made-to-each-country-in-a-fiscal-year-and-divided-them-by-1000000-to-get-the-total_aid-variable-that-shows-how-much-u.s.-aid-was-given-in-millions-to-a-country-each-year.">Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_aid</span> <span class='op'>&lt;-</span> <span class='va'>foreign_aid</span> <span class='op'>|&gt;</span></span>
@@ -1602,7 +1603,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
 <p>Data Section:
-Upon viewing the democracy scores and aid over time, any correlation seems questionable.</p>
+Upon viewing the democracy scores and aid over time, any correlation seems questionable. Countries like Afghanistan and Egypt have received billions in U.S. aid over the years, yet have some of the lowest levels of democracy while countries like Tunisia and Lebanon have gotten somewhere in the 10s of millions but have saw far better results in democratization. Even still, most countries with the exception of Israel have scores in the 8 to 14 range with Tunisia experiencing major democratic backsliding.
+Concerning all these countries, it seems that U.S. aid does not have a strong affect on levels of democracy. Afghanistan in particular stands out among the others as it received by far the most aid but seemed to be a steady decline in terms of its democracy score. On the contrary, Israel has also received significant U.S. aid and has the most democratic government according the scores. This is not to say the two are related, yet it does suggest that the effects of of U.S. aid are quite complicated. Overall, I decided that I would run a regression of these variables to get a better idea of how they might be related.</p>
 <h2 id="for-the-regression-i-combined-the-data-based-on-the-country-and-year-to-see-how-the-total-aid-received-by-a-country-from-the-u.s.-would-affect-their-democracy-levels.">For the regression, I combined the data based on the country and year to see how the total aid received by a country from the U.S. would affect their democracy levels.</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1611,17 +1613,7 @@ Upon viewing the democracy scores and aid over time, any correlation seems quest
 <span><span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>dem_score <span class='op'>=</span> <span class='va'>PR.Rating</span> <span class='op'>+</span> <span class='va'>CL.Rating</span><span class='op'>)</span></span>
 <span><span class='va'>fit_ovr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>total_aid</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
-<span><span class='va'>fit_ovr</span></span></code></pre>
-</div>
-<pre><code>
-Call:
-lm(formula = dem_score ~ total_aid, data = mena_combined)
-
-Coefficients:
-(Intercept)    total_aid  
- 10.4952175   -0.0003342  </code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_ovr</span><span class='op'>)</span></span></code></pre>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_ovr</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
@@ -1642,8 +1634,8 @@ Residual standard error: 3.092 on 144 degrees of freedom
 Multiple R-squared:  0.08211,   Adjusted R-squared:  0.07573 
 F-statistic: 12.88 on 1 and 144 DF,  p-value: 0.0004543</code></pre>
 </div>
-<h2 id="initially-it-seems-that-there-is-no-correlation-between-the-total-aid-received-by-a-mena-country-and-their-levels-of-democracy-so-i-decided-to-look-at-more-specific-variables-in-the-foreign-aid-section-since-the-overall-total-did-not-seem-to-have-a-correlation-with-the-democracy-levels-in-each-country.">Initially, it seems that there is no correlation between the total aid received by a MENA country and their levels of democracy, so I decided to look at more specific variables in the foreign aid section since the overall total did not seem to have a correlation with the democracy levels in each country.</h2>
-<p>##I began by looking at all the disbursements that went towards different forms of education in each country.</p>
+<h2 id="initially-it-seems-that-there-is-no-correlation-between-the-total-aid-received-by-a-mena-country-and-their-levels-of-democracy-so-i-decided-to-look-at-more-specific-variables-in-the-foreign-aid-section-since-the-overall-total-did-not-seem-to-have-a-correlation-with-the-democracy-levels-in-each-country.-the-two-variables-i-thought-might-have-an-impact-on-democratization-efforts-were-education-and-military.-educational-aid-to-a-population-might-lead-to-democratization-assuming-the-education-they-receive-is-not-full-of-propaganda-and-military-aid-could-help-quell-authoritarian-forces-in-mena-countries.">Initially, it seems that there is no correlation between the total aid received by a MENA country and their levels of democracy, so I decided to look at more specific variables in the foreign aid section since the overall total did not seem to have a correlation with the democracy levels in each country. The two variables I thought might have an impact on democratization efforts were education and military. Educational aid to a population might lead to democratization assuming the education they receive is not full of propaganda and military aid could help quell authoritarian forces in MENA countries.</h2>
+<h2 id="i-began-by-looking-at-all-the-disbursements-that-went-towards-different-forms-of-education-in-each-country.">I began by looking at all the disbursements that went towards different forms of education in each country.</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_education</span> <span class='op'>&lt;-</span> <span class='va'>foreign_aid</span> <span class='op'>|&gt;</span></span>
@@ -1654,40 +1646,28 @@ F-statistic: 12.88 on 1 and 144 DF,  p-value: 0.0004543</code></pre>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>aid_edu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>current_amount</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span><span class='op'>)</span></span>
 <span>  <span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
 <span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>mena_education</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Edition"</span>, <span class='st'>"Country.Name"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>  <span class='va'>mena_combined</span></span></code></pre>
-</div>
-<pre><code># A tibble: 96 × 38
-# Groups:   Edition [19]
-   Edition Country.Name total_aid Region      C.T.  Status PR.Rating
-     &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
- 1    2006 Afghanistan     1011.  Asia        c     PF             5
- 2    2006 Egypt           1779.  Africa      c     NF             6
- 3    2006 Lebanon           49.3 Middle East c     PF             5
- 4    2006 Yemen             18.7 Middle East c     PF             5
- 5    2007 Afghanistan     1828.  Asia        c     PF             5
- 6    2007 Egypt           1758.  Africa      c     NF             6
- 7    2007 Lebanon          634.  Middle East c     PF             5
- 8    2007 Yemen             23.7 Middle East c     PF             5
- 9    2008 Afghanistan     2185.  Asia        c     PF             5
-10    2008 Egypt           3426.  Africa      c     NF             6
-# ℹ 86 more rows
-# ℹ 31 more variables: CL.Rating &lt;int&gt;, A &lt;int&gt;, B &lt;int&gt;, C &lt;int&gt;,
-#   Add.Q &lt;int&gt;, Add.A &lt;chr&gt;, PR &lt;int&gt;, D &lt;int&gt;, E &lt;int&gt;, F &lt;int&gt;,
-#   G &lt;int&gt;, CL &lt;int&gt;, Total &lt;int&gt;, X &lt;lgl&gt;, X.1 &lt;lgl&gt;, X.2 &lt;lgl&gt;,
-#   X.3 &lt;lgl&gt;, X.4 &lt;lgl&gt;, X.5 &lt;lgl&gt;, X.6 &lt;lgl&gt;, X.7 &lt;lgl&gt;, X.8 &lt;lgl&gt;,
-#   X.9 &lt;lgl&gt;, X.10 &lt;lgl&gt;, X.11 &lt;lgl&gt;, X.12 &lt;lgl&gt;, X.13 &lt;lgl&gt;,
-#   X.14 &lt;lgl&gt;, x &lt;lgl&gt;, dem_score &lt;int&gt;, aid_edu &lt;dbl&gt;</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_edu</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_edu</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
-<span><span class='va'>fit_edu</span></span></code></pre>
+<span>  </span>
+<span><span class='va'>fit_edu</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_edu</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_edu</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
 lm(formula = dem_score ~ aid_edu, data = mena_combined)
 
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.2647 -1.3015  0.2384  1.2521  3.5373 
+
 Coefficients:
-(Intercept)      aid_edu  
-  10.256458     0.005893  </code></pre>
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 10.256458   0.270888  37.862   &lt;2e-16 ***
+aid_edu      0.005893   0.002834   2.079   0.0403 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.87 on 94 degrees of freedom
+Multiple R-squared:  0.04397,   Adjusted R-squared:  0.0338 
+F-statistic: 4.323 on 1 and 94 DF,  p-value: 0.04032</code></pre>
 </div>
 <h2 id="once-again-the-correlation-seems-very-weak-so-i-decided-to-check-the-affects-of-one-more-variable">Once again the correlation seems very weak, so I decided to check the affects of one more variable</h2>
 <h2 id="i-did-one-final-regression-where-i-filtered-the-disbursements-that-went-towards-mena-countries-militaries.">I did one final regression where I filtered the disbursements that went towards MENA countries’ militaries.</h2>
@@ -1701,43 +1681,35 @@ Coefficients:
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>aid_mil <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>current_amount</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span><span class='op'>)</span></span>
 <span>  <span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
 <span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>mena_military</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Edition"</span>, <span class='st'>"Country.Name"</span><span class='op'>)</span><span class='op'>)</span></span>
-<span>  <span class='va'>mena_combined</span></span></code></pre>
-</div>
-<pre><code># A tibble: 96 × 39
-# Groups:   Edition [19]
-   Edition Country.Name total_aid Region      C.T.  Status PR.Rating
-     &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
- 1    2006 Afghanistan     1011.  Asia        c     PF             5
- 2    2006 Egypt           1779.  Africa      c     NF             6
- 3    2006 Lebanon           49.3 Middle East c     PF             5
- 4    2006 Yemen             18.7 Middle East c     PF             5
- 5    2007 Afghanistan     1828.  Asia        c     PF             5
- 6    2007 Egypt           1758.  Africa      c     NF             6
- 7    2007 Lebanon          634.  Middle East c     PF             5
- 8    2007 Yemen             23.7 Middle East c     PF             5
- 9    2008 Afghanistan     2185.  Asia        c     PF             5
-10    2008 Egypt           3426.  Africa      c     NF             6
-# ℹ 86 more rows
-# ℹ 32 more variables: CL.Rating &lt;int&gt;, A &lt;int&gt;, B &lt;int&gt;, C &lt;int&gt;,
-#   Add.Q &lt;int&gt;, Add.A &lt;chr&gt;, PR &lt;int&gt;, D &lt;int&gt;, E &lt;int&gt;, F &lt;int&gt;,
-#   G &lt;int&gt;, CL &lt;int&gt;, Total &lt;int&gt;, X &lt;lgl&gt;, X.1 &lt;lgl&gt;, X.2 &lt;lgl&gt;,
-#   X.3 &lt;lgl&gt;, X.4 &lt;lgl&gt;, X.5 &lt;lgl&gt;, X.6 &lt;lgl&gt;, X.7 &lt;lgl&gt;, X.8 &lt;lgl&gt;,
-#   X.9 &lt;lgl&gt;, X.10 &lt;lgl&gt;, X.11 &lt;lgl&gt;, X.12 &lt;lgl&gt;, X.13 &lt;lgl&gt;,
-#   X.14 &lt;lgl&gt;, x &lt;lgl&gt;, dem_score &lt;int&gt;, aid_edu &lt;dbl&gt;, …</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_mil</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_mil</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
-<span><span class='va'>fit_mil</span></span></code></pre>
+<span>  </span>
+<span><span class='va'>fit_mil</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_mil</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_mil</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
 Call:
 lm(formula = dem_score ~ aid_mil, data = mena_combined)
 
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.4212 -1.4183  0.2774  0.9819  3.5954 
+
 Coefficients:
-(Intercept)      aid_mil  
-  1.040e+01    2.612e-04  </code></pre>
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.040e+01  2.207e-01   47.12   &lt;2e-16 ***
+aid_mil     2.612e-04  1.151e-04    2.27   0.0255 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1.862 on 94 degrees of freedom
+Multiple R-squared:  0.05197,   Adjusted R-squared:  0.04188 
+F-statistic: 5.152 on 1 and 94 DF,  p-value: 0.0255</code></pre>
 </div>
 <h2 id="here-again-there-seems-to-be-no-correlation.">Here again, there seems to be no correlation.</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Results:
+All three regressions suggest that U.S. aid to any sort of field is ineffective in MENA countries. Each regression had the same intercept of about 10.3 meaning no aid in each category yielded the same result. Additionally, each coefficient for every form of aid was statistically insignificant with each one being less than one percentage point. Although there are other categories of disbursements that could be analyzed, these two cateogries seem to be the most likely to have an effect on levels of democracy. Because of this, their statistically insignificant coefficients imply that U.S. monetary aid in any facet does not promote democracy.</p>
+<p>Conclusion:
+Ultimately, my results do not support my hypothesis, and it seems that U.S. monetary aid to MENA countries has little to no effect. Moreover, it seems that most MENA countries are opposed to any sort of democratization regardless of how much U.S. monetary aid they receive. The biggest limitation of this study is that it does not evaluate how the history of each country comes into play when understanding why U.S. aid might or might not be effective. The MENA region is historically authoritarian and has struggled to adapt western democracies in any capacity. Future studies might benefit by analyzing how U.S. aid has affected MENA countries through case studies of individual countries. This may help explain why a country like Afghanistan can receive significant U.S. aid with little results while Tunisia experienced signficant success without much aid.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
