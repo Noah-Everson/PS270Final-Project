@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/Aggregate_Category_and_Subcategory_Scores_FIW_2003-2024.csv","data/All_data_FIW_2013-2024.csv","data/Freedom House data.csv","data/us_foreign_aid_funding.csv","data/us_foreign_budget_complete.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.28/header-attrs.js","index_files/header-attrs-2.29/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1497,7 +1497,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="index_files/header-attrs-2.28/header-attrs.js"></script>
+  <script src="index_files/header-attrs-2.29/header-attrs.js"></script>
   <script src="index_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="index_files/popper-2.6.0/popper.min.js"></script>
   <link href="index_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1543,12 +1543,201 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>Milestone One:
-I would like explore some data on the Middle East and North Africa (MENA) data that would categorize the level of democracy in MENA countries and along with this, I would examine the scale of U.S. intervention in each country (could possibly be measured through U.S. financial aid to each country). Overall, I would use this to come to a conclusion on whether the majority of U.S. intervention in MENA countries is beneficial or disadvantageous since MENA intervention is often very controversial.</p>
-<p>Milestone Two:
-I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. Overall, I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I would like to use countries outside of the MENA region as a control to see whether U.S. aid itself has the same effect regardless of country or if the MENA region has a unique result from U.S. aid. If countries in the MENA region had higher levels of democracy after receiving aid, but then lower levels once the aid was removed or decreased significantly, then my hypothesis would seem accurate.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<pre><code>In my final project, I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. Overall, I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I am going to use a smaller sample of MENA countries to more easily represent them in visual data, but I will include a sample size that has countries with significant U.S. aid and countries that receive litte U.S. aid. Overall, this study should provide important information on whether the significant amount of money that the U.S. provides to MENA is beneficial for democratization efforts or whether it is ineffective.</code></pre>
+<h2 id="here-the-data-from-the-foreign-assistance-u.s.-government-website-and-the-freedom-house-website-are-loaded-into-r.-the-freedom-house-dataset-i-used-contained-data-on-every-country-in-the-world-from-2006-to-2024.-based-on-this-my-graphs-show-the-full-extent-of-these-years-to-give-the-largest-picture-of-whats-happening-in-the-mena-region.-freedom-house-uses-two-main-figures-to-score-how-democratic-a-country-is-civil-liberties-cl-and-personal-rights-pr.-the-dataset-ranks-each-of-these-from-1-to-7-with-1-signifying-the-most-cls-or-prs-and-7-the-least-cls-or-prs.-later-i-will-combine-these-scores-to-give-an-overall-representation-of-how-democratic-a-country-is.-as-for-the">Here the data from the foreign assistance U.S. Government website and the Freedom House website are loaded into R. The Freedom House dataset I used contained data on every country in the world from 2006 to 2024. Based on this, my graphs show the full extent of these years to give the largest picture of what’s happening in the MENA region. Freedom House uses two main figures to score how democratic a country is: civil liberties (CL) and personal rights (PR). The dataset ranks each of these from 1 to 7 with 1 signifying the most CLs or PRs and 7 the least CLs or PRs. Later, I will combine these scores to give an overall representation of how democratic a country is. As for the</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='va'>freedom_scores</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/Aggregate_Category_and_Subcategory_Scores_FIW_2003-2024.csv"</span> <span class='op'>)</span></span>
+<span><span class='va'>foreign_aid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/us_foreign_budget_complete.csv"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>##Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_aid</span> <span class='op'>&lt;-</span> <span class='va'>foreign_aid</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Afghanistan"</span> ,<span class='st'>"Egypt"</span>, <span class='st'>"Lebanon"</span> , <span class='st'>"Saudi Arabia"</span> , <span class='st'>"Tunisia"</span> , <span class='st'>"Iraq"</span> , <span class='st'>"Israel"</span> , <span class='st'>"Yemen"</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Edition <span class='op'>=</span> <span class='va'>Fiscal.Year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Edition</span>, <span class='va'>Country.Name</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>total_aid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>current_amount</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span><span class='op'>)</span></span>
+<span><span class='va'>mena_score</span> <span class='op'>&lt;-</span> <span class='va'>freedom_scores</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Territory</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Afghanistan"</span> , <span class='st'>"Egypt"</span>, <span class='st'>"Lebanon"</span> , <span class='st'>"Saudi Arabia"</span> , <span class='st'>"Tunisia"</span> , <span class='st'>"Iraq"</span> , <span class='st'>"Israel"</span> , <span class='st'>"Yemen"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Edition</span> , <span class='va'>Country.Territory</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h2 id="each-country-has-a-graph-showing-how-their-levels-of-democracy-have-changed-from-2006-to-2024-using-ggplot.">Each country has a graph showing how their levels of democracy have changed from 2006 to 2024 using ggplot.</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>score_graph</span> <span class='op'>&lt;-</span> <span class='va'>mena_score</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Edition</span> , y <span class='op'>=</span> <span class='va'>PR.Rating</span> <span class='op'>+</span> <span class='va'>CL.Rating</span> , color <span class='op'>=</span> <span class='va'>Country.Territory</span> , group <span class='op'>=</span> <span class='va'>Country.Territory</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>Country.Territory</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Democracy Levels in MENA"</span> , x <span class='op'>=</span> <span class='st'>"Year"</span> , y <span class='op'>=</span> <span class='st'>"Democracy Score"</span> , <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Country"</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span><span class='va'>score_graph</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h2 id="i-separated-the-graphs-of-monetary-aid-from-the-u.s.-into-two-groups-since-the-graph-of-the-following-three-countries-makes-it-difficult-to-view-the-graphs-of-the-other-countries-since-their-aid-is-so-much-larger.">I separated the graphs of monetary aid from the U.S. into two groups since the graph of the following three countries makes it difficult to view the graphs of the other countries since their aid is so much larger.</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>bigaid_graph</span> <span class='op'>&lt;-</span> <span class='va'>mena_aid</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Afghanistan"</span> , <span class='st'>"Egypt"</span> , <span class='st'>"Israel"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Edition</span> , y <span class='op'>=</span> <span class='va'>total_aid</span> , color <span class='op'>=</span> <span class='va'>Country.Name</span> , group <span class='op'>=</span> <span class='va'>Country.Name</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>Country.Name</span><span class='op'>)</span> <span class='op'>+</span>   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"U.S. Monetary Aid to MENA"</span> , x <span class='op'>=</span> <span class='st'>"Year"</span> , y <span class='op'>=</span> <span class='st'>"U.S. Dollars in Aid (in Millions)"</span> , <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Country"</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span><span class='va'>bigaid_graph</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>smallaid_graph</span> <span class='op'>&lt;-</span> <span class='va'>mena_aid</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"Lebanon"</span> , <span class='st'>"Saudi Arabia"</span> , <span class='st'>"Tunisia"</span> , <span class='st'>"Iraq"</span> , <span class='st'>"Yemen"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Edition</span> , y <span class='op'>=</span> <span class='va'>total_aid</span> , color <span class='op'>=</span> <span class='va'>Country.Name</span> , group <span class='op'>=</span> <span class='va'>Country.Name</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>Country.Name</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"U.S. Monetary Aid to MENA"</span> , x <span class='op'>=</span> <span class='st'>"Year"</span> , y <span class='op'>=</span> <span class='st'>"U.S. Dollars in Aid (in Millions)"</span> , <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Country"</span><span class='op'>)</span><span class='op'>)</span> </span>
+<span><span class='va'>smallaid_graph</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<p>Data Section:
+Upon viewing the democracy scores and aid over time, any correlation seems questionable.</p>
+<h2 id="for-the-regression-i-combined-the-data-based-on-the-country-and-year-to-see-how-the-total-aid-received-by-a-country-from-the-u.s.-would-affect-their-democracy-levels.">For the regression, I combined the data based on the country and year to see how the total aid received by a country from the U.S. would affect their democracy levels.</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_aid</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>mena_score</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Edition"</span> <span class='op'>=</span> <span class='st'>"Edition"</span>, <span class='st'>"Country.Name"</span> <span class='op'>=</span> <span class='st'>"Country.Territory"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>dem_score <span class='op'>=</span> <span class='va'>PR.Rating</span> <span class='op'>+</span> <span class='va'>CL.Rating</span><span class='op'>)</span></span>
+<span><span class='va'>fit_ovr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>total_aid</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
+<span><span class='va'>fit_ovr</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = dem_score ~ total_aid, data = mena_combined)
+
+Coefficients:
+(Intercept)    total_aid  
+ 10.4952175   -0.0003342  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_ovr</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = dem_score ~ total_aid, data = mena_combined)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.6731 -1.3959  0.8103  2.4375  7.4213 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.050e+01  3.139e-01  33.434  &lt; 2e-16 ***
+total_aid   -3.342e-04  9.311e-05  -3.589 0.000454 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 3.092 on 144 degrees of freedom
+Multiple R-squared:  0.08211,   Adjusted R-squared:  0.07573 
+F-statistic: 12.88 on 1 and 144 DF,  p-value: 0.0004543</code></pre>
+</div>
+<h2 id="initially-it-seems-that-there-is-no-correlation-between-the-total-aid-received-by-a-mena-country-and-their-levels-of-democracy-so-i-decided-to-look-at-more-specific-variables-in-the-foreign-aid-section-since-the-overall-total-did-not-seem-to-have-a-correlation-with-the-democracy-levels-in-each-country.">Initially, it seems that there is no correlation between the total aid received by a MENA country and their levels of democracy, so I decided to look at more specific variables in the foreign aid section since the overall total did not seem to have a correlation with the democracy levels in each country.</h2>
+<p>##I began by looking at all the disbursements that went towards different forms of education in each country.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_education</span> <span class='op'>&lt;-</span> <span class='va'>foreign_aid</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Afghanistan"</span> ,<span class='st'>"Egypt"</span>, <span class='st'>"Lebanon"</span> , <span class='st'>"Saudi Arabia"</span> , <span class='st'>"Tunisia"</span> , <span class='st'>"Iraq"</span> , <span class='st'>"Israel"</span> , <span class='st'>"Yemen"</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Edition <span class='op'>=</span> <span class='va'>Fiscal.Year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Edition</span>, <span class='va'>Country.Name</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>International.Sector.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Education, Level Unspecified"</span> , <span class='st'>"Basic Education"</span> , <span class='st'>"Post-Secondary Education"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>aid_edu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>current_amount</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span><span class='op'>)</span></span>
+<span>  <span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>mena_education</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Edition"</span>, <span class='st'>"Country.Name"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>mena_combined</span></span></code></pre>
+</div>
+<pre><code># A tibble: 96 × 38
+# Groups:   Edition [19]
+   Edition Country.Name total_aid Region      C.T.  Status PR.Rating
+     &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
+ 1    2006 Afghanistan     1011.  Asia        c     PF             5
+ 2    2006 Egypt           1779.  Africa      c     NF             6
+ 3    2006 Lebanon           49.3 Middle East c     PF             5
+ 4    2006 Yemen             18.7 Middle East c     PF             5
+ 5    2007 Afghanistan     1828.  Asia        c     PF             5
+ 6    2007 Egypt           1758.  Africa      c     NF             6
+ 7    2007 Lebanon          634.  Middle East c     PF             5
+ 8    2007 Yemen             23.7 Middle East c     PF             5
+ 9    2008 Afghanistan     2185.  Asia        c     PF             5
+10    2008 Egypt           3426.  Africa      c     NF             6
+# ℹ 86 more rows
+# ℹ 31 more variables: CL.Rating &lt;int&gt;, A &lt;int&gt;, B &lt;int&gt;, C &lt;int&gt;,
+#   Add.Q &lt;int&gt;, Add.A &lt;chr&gt;, PR &lt;int&gt;, D &lt;int&gt;, E &lt;int&gt;, F &lt;int&gt;,
+#   G &lt;int&gt;, CL &lt;int&gt;, Total &lt;int&gt;, X &lt;lgl&gt;, X.1 &lt;lgl&gt;, X.2 &lt;lgl&gt;,
+#   X.3 &lt;lgl&gt;, X.4 &lt;lgl&gt;, X.5 &lt;lgl&gt;, X.6 &lt;lgl&gt;, X.7 &lt;lgl&gt;, X.8 &lt;lgl&gt;,
+#   X.9 &lt;lgl&gt;, X.10 &lt;lgl&gt;, X.11 &lt;lgl&gt;, X.12 &lt;lgl&gt;, X.13 &lt;lgl&gt;,
+#   X.14 &lt;lgl&gt;, x &lt;lgl&gt;, dem_score &lt;int&gt;, aid_edu &lt;dbl&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_edu</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_edu</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
+<span><span class='va'>fit_edu</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = dem_score ~ aid_edu, data = mena_combined)
+
+Coefficients:
+(Intercept)      aid_edu  
+  10.256458     0.005893  </code></pre>
+</div>
+<h2 id="once-again-the-correlation-seems-very-weak-so-i-decided-to-check-the-affects-of-one-more-variable">Once again the correlation seems very weak, so I decided to check the affects of one more variable</h2>
+<h2 id="i-did-one-final-regression-where-i-filtered-the-disbursements-that-went-towards-mena-countries-militaries.">I did one final regression where I filtered the disbursements that went towards MENA countries’ militaries.</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mena_military</span> <span class='op'>&lt;-</span> <span class='va'>foreign_aid</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Country.Name</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Afghanistan"</span> ,<span class='st'>"Egypt"</span>, <span class='st'>"Lebanon"</span> , <span class='st'>"Saudi Arabia"</span> , <span class='st'>"Tunisia"</span> , <span class='st'>"Iraq"</span> , <span class='st'>"Israel"</span> , <span class='st'>"Yemen"</span> <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Edition <span class='op'>=</span> <span class='va'>Fiscal.Year</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>Edition</span>, <span class='va'>Country.Name</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>International.Sector.Name</span> <span class='op'>==</span> <span class='st'>"Conflict, Peace, and Security"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>aid_mil <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>current_amount</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span><span class='op'>)</span></span>
+<span>  <span class='va'>mena_combined</span> <span class='op'>&lt;-</span> <span class='va'>mena_combined</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='va'>mena_military</span>, by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Edition"</span>, <span class='st'>"Country.Name"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  <span class='va'>mena_combined</span></span></code></pre>
+</div>
+<pre><code># A tibble: 96 × 39
+# Groups:   Edition [19]
+   Edition Country.Name total_aid Region      C.T.  Status PR.Rating
+     &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;      &lt;int&gt;
+ 1    2006 Afghanistan     1011.  Asia        c     PF             5
+ 2    2006 Egypt           1779.  Africa      c     NF             6
+ 3    2006 Lebanon           49.3 Middle East c     PF             5
+ 4    2006 Yemen             18.7 Middle East c     PF             5
+ 5    2007 Afghanistan     1828.  Asia        c     PF             5
+ 6    2007 Egypt           1758.  Africa      c     NF             6
+ 7    2007 Lebanon          634.  Middle East c     PF             5
+ 8    2007 Yemen             23.7 Middle East c     PF             5
+ 9    2008 Afghanistan     2185.  Asia        c     PF             5
+10    2008 Egypt           3426.  Africa      c     NF             6
+# ℹ 86 more rows
+# ℹ 32 more variables: CL.Rating &lt;int&gt;, A &lt;int&gt;, B &lt;int&gt;, C &lt;int&gt;,
+#   Add.Q &lt;int&gt;, Add.A &lt;chr&gt;, PR &lt;int&gt;, D &lt;int&gt;, E &lt;int&gt;, F &lt;int&gt;,
+#   G &lt;int&gt;, CL &lt;int&gt;, Total &lt;int&gt;, X &lt;lgl&gt;, X.1 &lt;lgl&gt;, X.2 &lt;lgl&gt;,
+#   X.3 &lt;lgl&gt;, X.4 &lt;lgl&gt;, X.5 &lt;lgl&gt;, X.6 &lt;lgl&gt;, X.7 &lt;lgl&gt;, X.8 &lt;lgl&gt;,
+#   X.9 &lt;lgl&gt;, X.10 &lt;lgl&gt;, X.11 &lt;lgl&gt;, X.12 &lt;lgl&gt;, X.13 &lt;lgl&gt;,
+#   X.14 &lt;lgl&gt;, x &lt;lgl&gt;, dem_score &lt;int&gt;, aid_edu &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fit_mil</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>dem_score</span> <span class='op'>~</span> <span class='va'>aid_mil</span> , data <span class='op'>=</span> <span class='va'>mena_combined</span><span class='op'>)</span></span>
+<span><span class='va'>fit_mil</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = dem_score ~ aid_mil, data = mena_combined)
+
+Coefficients:
+(Intercept)      aid_mil  
+  1.040e+01    2.612e-04  </code></pre>
+</div>
+<h2 id="here-again-there-seems-to-be-no-correlation.">Here again, there seems to be no correlation.</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

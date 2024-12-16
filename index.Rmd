@@ -9,57 +9,119 @@ output:
 
 
 
-## Project thoughts
 
-Milestone One:
-I would like explore some data on the Middle East and North Africa (MENA) data that would categorize the level of democracy in MENA countries and along with this, I would examine the scale of U.S. intervention in each country (could possibly be measured through U.S. financial aid to each country). Overall, I would use this to come to a conclusion on whether the majority of U.S. intervention in MENA countries is beneficial or disadvantageous since MENA intervention is often very controversial. 
+	In my final project, I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I am going to use a smaller sample of MENA countries to more easily represent them in visual data, but I will include a sample size that has countries with significant U.S. aid and countries that receive litte U.S. aid. Overall, this study should provide important information on whether the significant amount of money that the U.S. provides to MENA is beneficial for democratization efforts or whether it is ineffective.
 
-Milestone Two:
-	I would like to explore how U.S. intervention in terms and military and financial aid affects levels of democracy in the Middle East North Africa (MENA) region. My hypothesis is that when U.S. intervention occurs in MENA, it is often unsustainable. Therefore, it will increase democracy for a short time, but as soon as it is removed, the level of democracy will return to the previous level or drop even lower. The variables I would like to examine are the freedom scores of each country which are provided by the website freedomhouse.org. These scores reflect the civil liberties and political rights of citizens in each country. Additionally, I would like to look at data provided by the website foreignassistance.gov. This website contains records of all the foreign aid the U.S. government provides to other countries. Overall, I would like to see if there is some kind of correlation between the amount of aid provided to each country and the levels of democracy. I would like to use countries outside of the MENA region as a control to see whether U.S. aid itself has the same effect regardless of country or if the MENA region has a unique result from U.S. aid. If countries in the MENA region had higher levels of democracy after receiving aid, but then lower levels once the aid was removed or decreased significantly, then my hypothesis would seem accurate.  
 
-Milestone Three:
-
+## Here the data from the foreign assistance U.S. Government website and the Freedom House website are loaded into R. The Freedom House dataset I used contained data on every country in the world from 2006 to 2024. Based on this, my graphs show the full extent of these years to give the largest picture of what's happening in the MENA region. Freedom House uses two main figures to score how democratic a country is: civil liberties (CL) and personal rights (PR). The dataset ranks each of these from 1 to 7 with 1 signifying the most CLs or PRs and 7 the least CLs or PRs. Later, I will combine these scores to give an overall representation of how democratic a country is. As for the 
 ```{r}
 library(tidyverse)
 library(ggplot2)
 freedom_scores <- read.csv("data/Aggregate_Category_and_Subcategory_Scores_FIW_2003-2024.csv" )
 foreign_aid <- read.csv("data/us_foreign_budget_complete.csv")
-head(foreign_aid)
-head(freedom_scores)
 ```
 
 
-
+##Next the data is filtered to include a representative sample of MENA countries. The sample includes countries that have received significant U.S. aid and countries that have received little to no aid. Then the sample is grouped by year and country so each data set can be compared by the same variables. For the monetary aid dataset, I totaled all of the disbursements made to each country in a fiscal year and divided them by 1,000,000 to get the total_aid variable that shows how much U.S. aid was given (in millions) to a country each year.
 
 ```{r}
 mena_aid <- foreign_aid |>
-  filter(Country.Name %in% c("Afghanistan" ,"Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" )) |>
+  filter(Country.Name %in% c("Afghanistan" ,"Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" , "Yemen" )) |>
   mutate(Edition = Fiscal.Year) |>
   group_by(Edition, Country.Name) |>
   summarize(total_aid = sum(current_amount) / 1000000)
-mena_aid
 mena_score <- freedom_scores |>
-  filter(Country.Territory %in% c("Afghanistan" , "Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel")) |>
+  filter(Country.Territory %in% c("Afghanistan" , "Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" , "Yemen")) |>
   group_by(Edition , Country.Territory)
-mena_score
-
-
 ```
 
-```{r}
-library(ggplot2)
-aid_graph <- mena_aid |> 
-  ggplot(aes(x = Edition , y = total_aid , color = Country.Name , group = Country.Name)) +
-  geom_point() + geom_line() + facet_wrap(~ Country.Name)
-aid_graph
-```
-
+## Each country has a graph showing how their levels of democracy have changed from 2006 to 2024 using ggplot.
 ```{r}
 score_graph <- mena_score |> 
   ggplot(aes(x = Edition , y = PR.Rating + CL.Rating , color = Country.Territory , group = Country.Territory)) +
-  geom_point() + geom_line() + theme_minimal() + facet_wrap(~ Country.Territory)
+  geom_point() + geom_line() + theme_minimal() + facet_wrap(~ Country.Territory) +
+  labs(title = "Democracy Levels in MENA" , x = "Year" , y = "Democracy Score" , ) +
+  guides(color = guide_legend(title = "Country")) 
 score_graph
 ```
+## I separated the graphs of monetary aid from the U.S. into two groups since the graph of the following three countries makes it difficult to view the graphs of the other countries since their aid is so much larger.
+```{r}
+bigaid_graph <- mena_aid |> 
+  filter(Country.Name %in% c("Afghanistan" , "Egypt" , "Israel")) |>
+  ggplot(aes(x = Edition , y = total_aid , color = Country.Name , group = Country.Name)) +
+  geom_point() + geom_line() + facet_wrap(~ Country.Name) +   labs(title = "U.S. Monetary Aid to MENA" , x = "Year" , y = "U.S. Dollars in Aid (in Millions)" , ) +
+  guides(color = guide_legend(title = "Country")) 
+bigaid_graph
+```
+
+```{r}
+smallaid_graph <- mena_aid |> 
+  filter(Country.Name %in% c( "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Yemen")) |>
+  ggplot(aes(x = Edition , y = total_aid , color = Country.Name , group = Country.Name)) +
+  geom_point() + geom_line() + facet_wrap(~ Country.Name) + labs(title = "U.S. Monetary Aid to MENA" , x = "Year" , y = "U.S. Dollars in Aid (in Millions)" , ) +
+  guides(color = guide_legend(title = "Country")) 
+smallaid_graph
+```
+
+Data Section:
+  Upon viewing the democracy scores and aid over time, any correlation seems questionable. Countries like Afghanistan and Egypt have received billions in U.S. aid over the years, yet have some of the lowest levels of democracy while countries like Tunisia and Lebanon have gotten somewhere in the 10s of millions but have saw far better results in democratization. Even still, most countries with the exception of Israel have scores in the 8 to 14 range with Tunisia experiencing major democratic backsliding.
+  Concerning all these countries, it seems that U.S. aid does not have a strong affect on levels of democracy. Afghanistan in particular stands out among the others as it received by far the most aid but seemed to be a steady decline in terms of its democracy score. On the contrary, Israel has also received significant U.S. aid and has the most democratic government according the scores. This is not to say the two are related, yet it does suggest that the effects of of U.S. aid are quite complicated. Overall, I decided that I would run a regression of these variables to get a better idea of how they might be related.
+
+## For the regression, I combined the data based on the country and year to see how the total aid received by a country from the U.S. would affect their democracy levels.
+
+```{r}
+mena_combined <- mena_aid |>
+  inner_join(mena_score, by = c("Edition" = "Edition", "Country.Name" = "Country.Territory"))
+mena_combined <- mena_combined |>
+  mutate(dem_score = PR.Rating + CL.Rating)
+fit_ovr <- lm(dem_score ~ total_aid , data = mena_combined)
+summary(fit_ovr)
+```
+
+## Initially, it seems that there is no correlation between the total aid received by a MENA country and their levels of democracy, so I decided to look at more specific variables in the foreign aid section since the overall total did not seem to have a correlation with the democracy levels in each country. The two variables I thought might have an impact on democratization efforts were education and military. Educational aid to a population might lead to democratization assuming the education they receive is not full of propaganda and military aid could help quell authoritarian forces in MENA countries.
+
+##I began by looking at all the disbursements that went towards different forms of education in each country. 
+
+```{r}
+mena_education <- foreign_aid |>
+  filter(Country.Name %in% c("Afghanistan" ,"Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" , "Yemen" )) |>
+  mutate(Edition = Fiscal.Year) |>
+  group_by(Edition, Country.Name) |>
+  filter(International.Sector.Name %in% c("Education, Level Unspecified" , "Basic Education" , "Post-Secondary Education")) |>
+  summarize(aid_edu = sum(current_amount) / 1000000)
+  mena_combined <- mena_combined |>
+    inner_join(mena_education, by = c("Edition", "Country.Name"))
+  
+fit_edu <-  lm(dem_score ~ aid_edu , data = mena_combined)
+summary(fit_edu)
+```
+
+## Once again the correlation seems very weak, so I decided to check the affects of one more variable
+
+## I did one final regression where I filtered the disbursements that went towards MENA countries' militaries. 
+
+```{r}
+mena_military <- foreign_aid |>
+  filter(Country.Name %in% c("Afghanistan" ,"Egypt", "Lebanon" , "Saudi Arabia" , "Tunisia" , "Iraq" , "Israel" , "Yemen" )) |>
+  mutate(Edition = Fiscal.Year) |>
+  group_by(Edition, Country.Name) |>
+  filter(International.Sector.Name == "Conflict, Peace, and Security") |>
+  summarize(aid_mil = sum(current_amount) / 1000000)
+  mena_combined <- mena_combined |>
+    inner_join(mena_military, by = c("Edition", "Country.Name"))
+  
+fit_mil <-  lm(dem_score ~ aid_mil , data = mena_combined)
+summary(fit_mil)
+
+```
+
+## Here again, there seems to be no correlation.
+
+Results:
+  All three regressions suggest that U.S. aid to any sort of field is ineffective in MENA countries. Each regression had the same intercept of about 10.3 meaning no aid in each category yielded the same result. Additionally, each coefficient for every form of aid was statistically insignificant with each one being less than one percentage point. Although there are other categories of disbursements that could be analyzed, these two cateogries seem to be the most likely to have an effect on levels of democracy. Because of this, their statistically insignifcant coefficients imply that U.S. monetary aid in any facet does not promote democracy.
+  
+
+
 
 
 
